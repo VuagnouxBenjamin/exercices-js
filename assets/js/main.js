@@ -119,7 +119,7 @@ const multiple = () => {
     while (isNaN(X)) {
         X = Number(window.prompt("ERREUR : Valeur invalide, veuillez entrez le nombre d'itération désiré", ""));
     };
-    for (let i = 1; i <= N; i++) {
+    for (let i = 1; i <= X; i++) {
         console.log(`${i} x ${N} = ${i*N}`)
     }
     return window.alert("Ouvrez la console (f12) pour voir le resultat")
