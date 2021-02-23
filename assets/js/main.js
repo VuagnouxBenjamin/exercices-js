@@ -82,7 +82,7 @@ const compteInfN = () => {
     let arr = [];
     let userN = window.prompt("Veuillez saisir un nombre", "");
     while (isNaN(userN)) {
-        userN = window.prompt("Valeur invalide, veuillez saisir un nombre", "");
+        userN = window.prompt("ERREUR : Valeur invalide, veuillez saisir un nombre", "");
     };
     for (let i = userN; i > 0; i--) {
         arr.push(i)
@@ -95,7 +95,7 @@ const moyenne = () => {
     let arr = [];
     let note = Number(window.prompt("Veuillez saisir une note ou entrez 0 pour arreter la saisie", ""));
     while (isNaN(note)) {
-        note = Number(window.prompt("Valeur invalide, Veuillez saisir une note ou entrez 0 pour arreter la saisie", ""));
+        note = Number(window.prompt("ERREUR : Valeur invalide, Veuillez saisir une note ou entrez 0 pour arreter la saisie", ""));
     };
     while (note > 0) {
         note = Number(window.prompt("Veuillez saisir une nouvelle note ou entrez 0 pour arreter la saisie", ""));
@@ -107,6 +107,22 @@ const moyenne = () => {
     let result = arr.reduce((acc, curr) => acc + curr) / (arr.length + 1);
     console.log(result)
     return window.alert(`La moyenne est de ${result}`)
+}
+
+// --- Multiple 
+const multiple = () => {
+    let N = Number(window.prompt("Veuillez entrez votre multiple", ""));
+    while (isNaN(N)) {
+        N = Number(window.prompt("ERREUR : Valeur invalide, veuillez entrez votre multiple", ""));
+    };
+    let X = Number(window.prompt("Veuillez entrez le nombre d'itération désiré", ""));
+    while (isNaN(X)) {
+        X = Number(window.prompt("ERREUR : Valeur invalide, veuillez entrez le nombre d'itération désiré", ""));
+    };
+    for (let i = 1; i <= N; i++) {
+        console.log(`${i} x ${N} = ${i*N}`)
+    }
+    return window.alert("Ouvrez la console (f12) pour voir le resultat")
 }
 
 // ----- Gestion des evenements
@@ -134,6 +150,13 @@ infN.onclick = compteInfN;
 // --- Moyenne
 let moy = document.getElementById("moyenneBtn");
 moy.onclick = moyenne;
+
+// --- Multiple 
+let mult = document.getElementById("multipleBtn");
+mult.onclick = multiple;
+
+
+
 
 //-- commentaires :
 // Mettre une boucle autour des "check if value is good"
