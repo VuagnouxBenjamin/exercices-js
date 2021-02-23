@@ -90,6 +90,25 @@ const compteInfN = () => {
     return window.alert(arr.join(', '))
 };
 
+// --- Moyenne
+const moyenne = () => {
+    let arr = [];
+    let note = Number(window.prompt("Veuillez saisir une note ou entrez 0 pour arreter la saisie", ""));
+    while (isNaN(note)) {
+        note = Number(window.prompt("Valeur invalide, Veuillez saisir une note ou entrez 0 pour arreter la saisie", ""));
+    };
+    while (note > 0) {
+        note = Number(window.prompt("Veuillez saisir une nouvelle note ou entrez 0 pour arreter la saisie", ""));
+        if (note == 0) {
+            break
+        }
+        arr.push(note)
+    }
+    let result = arr.reduce((acc, curr) => acc + curr) / (arr.length + 1);
+    console.log(result)
+    return window.alert(`La moyenne est de ${result}`)
+}
+
 // ----- Gestion des evenements
 
 // --- Pair ou impair
@@ -111,6 +130,10 @@ prenom.onclick = listePrenom;
 // --- Entiers inférieur à N
 let infN = document.getElementById("infNBtn");
 infN.onclick = compteInfN;
+
+// --- Moyenne
+let moy = document.getElementById("moyenneBtn");
+moy.onclick = moyenne;
 
 //-- commentaires :
 // Mettre une boucle autour des "check if value is good"
