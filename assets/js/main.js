@@ -125,6 +125,20 @@ const multiple = () => {
     return window.alert("Ouvrez la console (f12) pour voir le resultat")
 }
 
+// --- Voyelle 
+const voyelleCount = () => {
+    let word = window.prompt("Veuillez entrer un mot", "");
+    let letters = word.split("");
+    let voyels = ['a', 'e', 'i', 'o', 'u', 'y'];
+    let count = 0;
+    for (let i = 0; i < letters.length; i++) {
+        if (voyels.includes(letters[i])) {
+            count++
+        }
+    }
+    return window.alert(`"${word}" comprend ${count} voyelles`)
+}
+
 // ----- Gestion des evenements
 
 // --- Pair ou impair
@@ -155,8 +169,9 @@ moy.onclick = moyenne;
 let mult = document.getElementById("multipleBtn");
 mult.onclick = multiple;
 
-
-
+// --- Voyelles 
+let voy = document.getElementById('voyelleBtn');
+voy.onclick = voyelleCount;
 
 //-- commentaires :
 // Mettre une boucle autour des "check if value is good"
