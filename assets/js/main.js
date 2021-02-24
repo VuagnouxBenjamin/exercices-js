@@ -46,6 +46,8 @@ let RechercheTabBtn = document.getElementById("RechercheTabBtnId");
 let InfoTabBtn = document.getElementById("InfoTabBtnId");
 let btnToHide = document.getElementsByClassName("showManipOptions");
 
+// --- Tri à bulles 
+let triABullesBtn = document.getElementById("triABullesBtnId");
 
 // ----- DECLARATION DES FONCTIONS
 
@@ -314,6 +316,34 @@ const infoTab = () => {
     return window.alert(`Le maximum est ${Math.max(tabMax)}, la moyenne est ${moyenne.toFixed(2)}`)
 };
 
+// --- Tri à bulles 
+const triABulles = () => {
+    //lecture du tableau 
+    // choix de la taille du tableau. 
+    let x = Number(window.prompt("Entrez la taille du tableau (nombre)"));
+    // boucle x fois, x étant la taille du tableau. 
+    let arr = new Array;
+    let item;
+    for (let i = 1; i <= x; i++) {
+        item = window.prompt(`Entrez la valeur n° ${i}`);
+        arr.push(item);
+    }
+    // affichage du contenu du tableau. 
+    console.log(arr);
+    let i = 0;
+    while (i < arr.length) {
+        if (arr[i] > arr[i + 1]) {
+            hold = arr[i + 1];
+            arr[i + 1] = arr[i];
+            arr[i] = hold;
+            i = 0;
+        } else {
+            i++
+        }
+    }
+    return window.alert(arr)
+
+}
 
 // ----- GESTION DES EVENEMENTS GLOBAUX
 
@@ -351,10 +381,12 @@ strToken.onclick = strTok;
 tableauBtn.onclick = tableau;
 
 // --- Manipuler un tableau 
-
 GetIntegerBtn.onclick = getInteger;
 InitTabBtn.onclick = initTab;
 SaisieTabBtn.onclick = saisieTab;
 AfficheTabBtn.onclick = afficheTab;
 RechercheTabBtn.onclick = rechercheTab;
 InfoTabBtn.onclick = infoTab;
+
+// --- Tri à bulles
+triABullesBtn.onclick = triABulles;
