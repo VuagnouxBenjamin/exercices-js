@@ -173,7 +173,7 @@ const voyelleCount = () => {
 }
 
 // --- Produit & Image 
-const hide = (event) => {
+const hideResult = (event) => {
     prodCard.hidden = true;
 };
 
@@ -190,7 +190,7 @@ const produitImage = () => {
     // Affichage de la carte
     prodText.innerHTML = `Le cube de ${x} est égale à ${x*x*x}, <br> le produit de ${x} x ${y} est égal à ${x*y}`;
     prodCard.hidden = false;
-    hideCard.addEventListener("click", hide)
+    hideCard.addEventListener("click", hideResult)
 }
 
 // --- String Token
@@ -198,9 +198,14 @@ const strTok = () => {
     // imput utilisateur & validation des données.
     let str1 = window.prompt("Entrez votre liste de mot séparée par votre séparateur préféré");
     let str2 = window.prompt("Entrez le séparateur de votre liste de mot");
-    // Verification n pas plus grand que la chaine de carractère. 
+    let arr = str1.split(str2);
+    console.log("🚀 ~ file: main.js ~ line 202 ~ strTok ~ arr", arr)
+        // Verification n pas plus grand que le nombre d'item dans str1. 
     let n = Number(window.prompt("Entrez le nième (nombre) mot à éxtraire"));
-
+    while (n <= 0 || n > arr.length) {
+        n = Number(window.prompt("Valeur invalide, entrez le nième (nombre) mot à éxtraire"));
+    };
+    return window.alert(`Le mot que vous avez choisi est : ${arr[(n-1)]}`)
 }
 
 
