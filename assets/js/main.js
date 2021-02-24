@@ -36,6 +36,16 @@ let strToken = document.getElementById("strTokBtn");
 // --- Créer un tableau
 let tableauBtn = document.getElementById("tableauBtnId");
 
+// --- Manipuler un tableau
+let manipulerTableauBtn = document.getElementById("manipTableauBtnId");
+let GetIntegerBtn = document.getElementById("GetIntegerBtnId");
+let InitTabBtn = document.getElementById("InitTabBtnId");
+let SaisieTabBtn = document.getElementById("SaisieTabBtnId");
+let AfficheTabBtn = document.getElementById("AfficheTabBtnId");
+let RechercheTabBtn = document.getElementById("RechercheTabBtnId");
+let InfoTabBtn = document.getElementById("InfoTabBtnId");
+
+
 // ----- DECLARATION DES FONCTIONS
 
 // --- Pair ou impair
@@ -157,8 +167,8 @@ const multiple = () => {
     };
     for (let i = 1; i <= X; i++) {
         console.log(`${i} x ${N} = ${i*N}`)
-    }
-    return window.alert("Ouvrez la console (f12) pour voir le resultat")
+    };
+    return window.alert("Ouvrez la console (f12) pour voir le resultat");
 }
 
 // --- Voyelle 
@@ -171,8 +181,8 @@ const voyelleCount = () => {
         if (voyels.includes(letters[i])) {
             count++
         }
-    }
-    return window.alert(`"${word}" comprend ${count} voyelles`)
+    };
+    return window.alert(`"${word}" comprend ${count} voyelles`);
 }
 
 // --- Produit & Image 
@@ -193,7 +203,7 @@ const produitImage = () => {
     // Affichage de la carte
     prodText.innerHTML = `Le cube de ${x} est égale à ${x*x*x}, <br> le produit de ${x} x ${y} est égal à ${x*y}`;
     prodCard.hidden = false;
-    hideCard.addEventListener("click", hideResult)
+    hideCard.addEventListener("click", hideResult);
 }
 
 // --- String Token
@@ -208,7 +218,7 @@ const strTok = () => {
     while (n <= 0 || n > arr.length) {
         n = Number(window.prompt("Valeur invalide, entrez le nième (nombre) mot à éxtraire"));
     };
-    return window.alert(`Le mot que vous avez choisi est : ${arr[(n-1)]}`)
+    return window.alert(`Le mot que vous avez choisi est : ${arr[(n-1)]}`);
 }
 
 // --- Créer un tableau
@@ -219,11 +229,20 @@ const tableau = () => {
     let arr = new Array;
     let item;
     for (let i = 1; i <= x; i++) {
-        item = window.prompt(`Entrez la valeur n° ${i}`)
-        arr.push(item)
+        item = window.prompt(`Entrez la valeur n° ${i}`);
+        arr.push(item);
     }
     // affichage du contenu du tableau. 
     return window.alert("Votre tableau : [" + arr + "]")
+}
+
+// --- Manipuler un tableau 
+const showManipOptions = () => {
+    console.log("ok")
+}
+
+const manipulerTableau = () => {
+
 }
 
 // ----- GESTION DES EVENEMENTS GLOBAUX
@@ -260,6 +279,15 @@ strToken.onclick = strTok;
 
 // --- Créer un tableau
 tableauBtn.onclick = tableau;
+
+// --- Manipuler un tableau 
+manipulerTableauBtn.onclick = showManipOptions;
+GetIntegerBtn.onclick = showManipOptions;
+InitTabBtn.onclick = showManipOptions;
+SaisieTabBtn.onclick = showManipOptions;
+AfficheTabBtn.onclick = showManipOptions;
+RechercheTabBtn.onclick = showManipOptions;
+InfoTabBtn.onclick = showManipOptions;
 //-- commentaires :
 // Mettre une boucle autour des "check if value is good" - DONE
 // Decalrer les variables en hat de la feuille. 
