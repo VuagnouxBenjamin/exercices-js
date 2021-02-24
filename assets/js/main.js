@@ -1,9 +1,44 @@
-// ----- Fonctions pour les exercices
+// ----- DECLARATION DES VARIABLES GLOBALES
+
+// --- Pair ou impair
+let pairBtn = document.getElementById("pairImpair");
+
+// --- Majeur ou mineur
+let majMin = document.getElementById("majeurMineur");
+
+// --- Calculatrice
+let calculatrice = document.getElementById("calculBtn");
+
+// --- Liste de prénom
+let prenom = document.getElementById("prenomBtn");
+
+// --- Entiers inférieur à N
+let infN = document.getElementById("infNBtn");
+
+// --- Moyenne
+let moy = document.getElementById("moyenneBtn");
+
+// --- Multiple 
+let mult = document.getElementById("multipleBtn");
+
+// --- Voyelles 
+let voy = document.getElementById('voyelleBtn');
+
+// --- Produit & Image 
+let prodImg = document.getElementById("produitBtn");
+let prodCard = document.getElementById("produitCard");
+let prodText = document.getElementById("produitTxt");
+let hideCard = document.getElementById("hideImg");
+
+// --- String Token
+let strToken = document.getElementById("strTokBtn");
+
+// ----- DECLARATION DES FONCTIONS
 
 // --- Pair ou impair
 const pairOuImpair = () => {
     let aNumber = Number(window.prompt("Veuillez saisir un nombre :", ""));
-    if (isNaN(aNumber)) {
+    while (isNaN(aNumber)) {
         window.alert("Vous n'avez pas saisi un nombre, veuillez réessayer.");
         aNumber = Number(window.prompt("Veuillez resaisir un nombre :", ""));
     };
@@ -17,14 +52,12 @@ const pairOuImpair = () => {
 // --- Majeur ou mineur
 const majeurOuMineur = () => {
     let aAge = Number(window.prompt("Veuillez saisir votre age:", ""));
-    if (isNaN(aAge) || aAge < 0) {
+    while (isNaN(aAge) || aAge < 0) {
         window.alert("Vous n'avez pas saisi un nombre valide, veuillez réessayer.");
         aAge = Number(window.prompt("Veuillez resaisir votre age:", ""));
-    } else if (aAge >= 18) {
-        return window.alert("Vous êtes majeur");
-    } else {
-        return window.alert("Votre êtes mineur");
     }
+    aAge >= 18 ?
+        window.alert("Vous êtes majeur") : window.alert("Votre êtes mineur");
 };
 
 // --- Calculatrice
@@ -34,14 +67,14 @@ const calclul = () => {
     let operateur = window.prompt("Veuillez saisir un operateur (+ - / *)", "");
     const operateurValid = ["+", "-", "/", "*"];
     // Est ce que les imputs sont valides ?
-    if (isNaN(nb1) || isNaN(nb2)) {
+    while (isNaN(nb1) || isNaN(nb2)) {
         window.alert("Votre premier nombre n'est pas valide, veuillez réessayer.");
         nb1 = Number(window.prompt("Veuillez resaisir votre age:", ""));
         nb2 = Number(window.prompt("Veuillez saisir un deuxième nombre", ""));
         operateur = window.prompt("Veuillez saisir un operateur (+ - / *)", "");
     }
     // Est ce que l'operateur est valide ?
-    if (!operateurValid.includes(operateur)) {
+    while (!operateurValid.includes(operateur)) {
         window.alert("Votre operateur n'est pas valide, veuillez réessayer.");
         nb1 = Number(window.prompt("Veuillez resaisir votre age:", ""));
         nb2 = Number(window.prompt("Veuillez saisir un deuxième nombre", ""));
@@ -84,7 +117,7 @@ const compteInfN = () => {
     while (isNaN(userN)) {
         userN = window.prompt("ERREUR : Valeur invalide, veuillez saisir un nombre", "");
     };
-    for (let i = userN; i > 0; i--) {
+    for (let i = userN - 1; i > 0; i--) {
         arr.push(i)
     };
     return window.alert(arr.join(', '))
@@ -139,39 +172,71 @@ const voyelleCount = () => {
     return window.alert(`"${word}" comprend ${count} voyelles`)
 }
 
-// ----- Gestion des evenements
+// --- Produit & Image 
+const hide = (event) => {
+    prodCard.hidden = true;
+};
+
+const produitImage = () => {
+    // Imput utilisateur & validation des données. 
+    let x = Number(window.prompt("Entrez un nombre", ""));
+    while (isNaN(x)) {
+        x = Number(window.prompt("Valeur invalide, entrez un nombre", ""))
+    }
+    let y = Number(window.prompt("Entrez un multiplicateur", ""));
+    while (isNaN(y)) {
+        y = Number(window.prompt("Valeur invalide, entrez un multiplicateur", ""));
+    }
+    // Affichage de la carte
+    prodText.innerHTML = `Le cube de ${x} est égale à ${x*x*x}, <br> le produit de ${x} x ${y} est égal à ${x*y}`;
+    prodCard.hidden = false;
+    hideCard.addEventListener("click", hide)
+}
+
+// --- String Token
+const strTok = () => {
+    // imput utilisateur & validation des données.
+    let str1 = window.prompt("Entrez votre liste de mot séparée par votre séparateur préféré");
+    let str2 = window.prompt("Entrez le séparateur de votre liste de mot");
+    // Verification n pas plus grand que la chaine de carractère. 
+    let n = Number(window.prompt("Entrez le nième (nombre) mot à éxtraire"));
+
+}
+
+
+// ----- GESTION DES EVENEMENTS GLOBAUX
 
 // --- Pair ou impair
-let pairBtn = document.getElementById("pairImpair");
 pairBtn.onclick = pairOuImpair;
 
 // --- Majeur ou mineur
-let majMin = document.getElementById("majeurMineur");
 majMin.onclick = majeurOuMineur;
 
 // --- Calculatrice
-let calculatrice = document.getElementById("calculBtn");
 calculatrice.onclick = calclul;
 
 // --- Liste de prénom
-let prenom = document.getElementById("prenomBtn");
 prenom.onclick = listePrenom;
 
 // --- Entiers inférieur à N
-let infN = document.getElementById("infNBtn");
 infN.onclick = compteInfN;
 
 // --- Moyenne
-let moy = document.getElementById("moyenneBtn");
 moy.onclick = moyenne;
 
 // --- Multiple 
-let mult = document.getElementById("multipleBtn");
 mult.onclick = multiple;
 
 // --- Voyelles 
-let voy = document.getElementById('voyelleBtn');
 voy.onclick = voyelleCount;
 
+// --- Produit & Image 
+prodImg.onclick = produitImage;
+
+// --- String Token
+strToken.onclick = strTok;
+
 //-- commentaires :
-// Mettre une boucle autour des "check if value is good"
+// Mettre une boucle autour des "check if value is good" - DONE
+// Decalrer les variables en hat de la feuille. 
+// Declarer les event après les fonctions.
