@@ -44,6 +44,7 @@ let SaisieTabBtn = document.getElementById("SaisieTabBtnId");
 let AfficheTabBtn = document.getElementById("AfficheTabBtnId");
 let RechercheTabBtn = document.getElementById("RechercheTabBtnId");
 let InfoTabBtn = document.getElementById("InfoTabBtnId");
+let btnToHide = document.getElementsByClassName("showManipOptions");
 
 
 // ----- DECLARATION DES FONCTIONS
@@ -212,8 +213,7 @@ const strTok = () => {
     let str1 = window.prompt("Entrez votre liste de mot séparée par votre séparateur préféré");
     let str2 = window.prompt("Entrez le séparateur de votre liste de mot");
     let arr = str1.split(str2);
-    console.log("🚀 ~ file: main.js ~ line 202 ~ strTok ~ arr", arr)
-        // Verification n pas plus grand que le nombre d'item dans str1. 
+    // Verification n pas plus grand que le nombre d'item dans str1. 
     let n = Number(window.prompt("Entrez le nième (nombre) mot à éxtraire"));
     while (n <= 0 || n > arr.length) {
         n = Number(window.prompt("Valeur invalide, entrez le nième (nombre) mot à éxtraire"));
@@ -237,13 +237,83 @@ const tableau = () => {
 }
 
 // --- Manipuler un tableau 
-const showManipOptions = () => {
-    console.log("ok")
-}
+// variables
+let tabLength;
+let tab = new Array();
 
-const manipulerTableau = () => {
+// functions
+const getInteger = () => {
+    //lecture de la nouvelle integrale 
+    let newInteger = Number(window.prompt("Entrez une valeur à ajouter au tableau"));
+    while (isNaN(newInteger)) {
+        newInteger = Number(window.prompt("Entrez une valeur à ajouter au tableau"));
+    }
+    tab.push(newInteger);
+    return console.log(tab);
+};
 
-}
+const initTab = () => {
+    //reinitialisation si déjà initialisé
+    tabLength = 0;
+    tab = new Array();
+    //initialisation d'un nouveau tableau
+    tabLength = Number(window.prompt("Entrez la taille du tableau à créer (nb)", ""));
+    //Autorise l'utilisateur à quiter
+    if (tabLength == null || tabLength == "") {
+        return window.alert('A la prochaine');
+    }
+    //La valeur est elle valide ? 
+    while (tabLength < 1 || isNaN(tabLength)) {
+        tabLength = Number(window.prompt("ERREUR : Valeur invalide, entrez la taille du tableau à créer (nb)"));
+    }
+};
+
+const saisieTab = () => {
+    if (tab.length > 1) {
+        return window.alert('Vous avez déjà saisi des valeurs dans votre tableau, essayer AfficheTab pour les afficher')
+    }
+    for (let i = 1; i <= tabLength; i++) {
+        item = Number(window.prompt(`Entrez la valeur n° ${i} (en nombre)`));
+        while (isNaN(item)) {
+            item = Number(window.prompt(`ERREUR : Valeur invalide, entrez la valeur n° ${i} (en nombre)`));
+        }
+        tab.push(item);
+    }
+    console.log(tab)
+};
+
+const afficheTab = () => {
+    //est ce que le tableau a déjà été initialisé et rempli.  
+    while (tab.length < 1) {
+        return window.alert("Votre tableau est vide, commencez par initialiser votre Tableau avec InitTab")
+    };
+    return window.alert("Votre tableau : [" + tab + "]");
+};
+
+const rechercheTab = () => {
+    //est ce que le tableau a déjà été initialisé et rempli.  
+    while (tab.length < 1) {
+        return window.alert("Votre tableau est vide, commencez par initialiser votre Tableau avec InitTab")
+    };
+    let index = Number(window.prompt("Entrez le N° de la valeur que vous cherchez"));
+    while (isNaN(index) || index <= 0 || index > tabLength) {
+        index = Number(window.prompt("ERREUR : Valeur invalide, entrez le N° de la valeur que vous cherchez"));
+    }
+    return window.alert(`votre valeur est : ${tab[index - 1]}`);
+};
+
+const infoTab = () => {
+    //est ce que le tableau a déjà été initialisé et rempli.  
+    while (tab.length < 1) {
+        return window.alert("Votre tableau est vide, commencez par initialiser votre Tableau avec InitTab")
+    };
+    //calculs 
+    let moyenne = tab.reduce((acc, curr) => acc + curr) / (tab.length + 1);
+    let tabMax = Math.max.apply(Math, tab);
+    //valeur de retour
+    return window.alert(`Le maximum est ${Math.max(tabMax)}, la moyenne est ${moyenne.toFixed(2)}`)
+};
+
 
 // ----- GESTION DES EVENEMENTS GLOBAUX
 
@@ -281,14 +351,10 @@ strToken.onclick = strTok;
 tableauBtn.onclick = tableau;
 
 // --- Manipuler un tableau 
-manipulerTableauBtn.onclick = showManipOptions;
-GetIntegerBtn.onclick = showManipOptions;
-InitTabBtn.onclick = showManipOptions;
-SaisieTabBtn.onclick = showManipOptions;
-AfficheTabBtn.onclick = showManipOptions;
-RechercheTabBtn.onclick = showManipOptions;
-InfoTabBtn.onclick = showManipOptions;
-//-- commentaires :
-// Mettre une boucle autour des "check if value is good" - DONE
-// Decalrer les variables en hat de la feuille. 
-// Declarer les event après les fonctions.
+
+GetIntegerBtn.onclick = getInteger;
+InitTabBtn.onclick = initTab;
+SaisieTabBtn.onclick = saisieTab;
+AfficheTabBtn.onclick = afficheTab;
+RechercheTabBtn.onclick = rechercheTab;
+InfoTabBtn.onclick = infoTab;
