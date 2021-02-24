@@ -33,6 +33,9 @@ let hideCard = document.getElementById("hideImg");
 // --- String Token
 let strToken = document.getElementById("strTokBtn");
 
+// --- Créer un tableau
+let tableauBtn = document.getElementById("tableauBtnId");
+
 // ----- DECLARATION DES FONCTIONS
 
 // --- Pair ou impair
@@ -208,6 +211,20 @@ const strTok = () => {
     return window.alert(`Le mot que vous avez choisi est : ${arr[(n-1)]}`)
 }
 
+// --- Créer un tableau
+const tableau = () => {
+    // choix de la taille du tableau. 
+    let x = Number(window.prompt("Entrez la taille du tableau (nombre)"));
+    // boucle x fois, x étant la taille du tableau. 
+    let arr = new Array;
+    let item;
+    for (let i = 1; i <= x; i++) {
+        item = window.prompt(`Entrez la valeur n° ${i}`)
+        arr.push(item)
+    }
+    // affichage du contenu du tableau. 
+    return window.alert("Votre tableau : [" + arr + "]")
+}
 
 // ----- GESTION DES EVENEMENTS GLOBAUX
 
@@ -241,6 +258,8 @@ prodImg.onclick = produitImage;
 // --- String Token
 strToken.onclick = strTok;
 
+// --- Créer un tableau
+tableauBtn.onclick = tableau;
 //-- commentaires :
 // Mettre une boucle autour des "check if value is good" - DONE
 // Decalrer les variables en hat de la feuille. 
